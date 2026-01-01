@@ -2,24 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My E-Commerce Store</title>
+  <title>Pro E-Commerce Store</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-  <h1>My Online Store</h1>
-</header>
+<nav>
+  <div class="logo">ProStore</div>
+  <ul>
+    <li>Home</li>
+    <li>Products</li>
+    <li onclick="openCart()" class="cart-btn">Cart 🛒</li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <h1>Your Modern Shopping Destination</h1>
+  <p>Best quality products at unbeatable prices</p>
+  <button>Shop Now</button>
+</section>
+
+<section class="title">
+  <h2>Featured Products</h2>
+</section>
 
 <section class="products" id="products"></section>
 
-<div class="cart">
-  <h2>🛒 Cart</h2>
-  <div id="cart-items"></div>
-  <p id="total"></p>
+<!-- Cart -->
+<div id="cart" class="cart-container">
+  <div class="cart-box">
+    <h2>Shopping Cart</h2>
+    <span class="close" onclick="closeCart()">X</span>
+    <div id="cart-items"></div>
+    <h3 id="total"></h3>
+  </div>
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
+
