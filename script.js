@@ -1,121 +1,53 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial;
+const products = [
+  { id:1, name:"Premium Headphones", price:60, img:"https://via.placeholder.com/250" },
+  { id:2, name:"Smart Watch", price:120, img:"https://via.placeholder.com/250" },
+  { id:3, name:"Sports Shoes", price:80, img:"https://via.placeholder.com/250" },
+  { id:4, name:"Gaming Mouse", price:45, img:"https://via.placeholder.com/250" }
+];
+
+const productContainer = document.getElementById("products");
+const cartDisplay = document.getElementById("cart-items");
+const totalDisplay = document.getElementById("total");
+let cart = [];
+
+// Display Products
+products.forEach(p=>{
+  productContainer.innerHTML += `
+  <div class="card">
+    <img src="${p.img}">
+    <h3>${p.name}</h3>
+    <p>$${p.price}</p>
+    <button onclick="addToCart(${p.id})">Add to Cart</button>
+  </div>`;
+});
+
+// Add to Cart
+function addToCart(id){
+  const item = products.find(p=>p.id===id);
+  cart.push(item);
+  updateCart();
 }
 
-body{
-  background:#f5f5f5;
+// Show Cart
+function updateCart(){
+  cartDisplay.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(item=>{
+    cartDisplay.innerHTML += `<p>${item.name} - $${item.price}</p>`;
+    total += item.price;
+  });
+
+  totalDisplay.innerHTML = "Total: $" + total;
 }
 
-/* Nav */
-nav{
-  display:flex;
-  justify-content:space-between;
-  padding:20px;
-  background:#111;
-  color:white;
+// Open / Close Cart
+function openCart(){
+  document.getElementById("cart").style.display = "flex";
 }
 
-nav ul{
-  list-style:none;
-  display:flex;
-  gap:20px;
+function closeCart(){
+  document.getElementById("cart").style.display = "none";
 }
 
-nav li{
-  cursor:pointer;
-}
-
-/* Hero */
-.hero{
-  text-align:center;
-  padding:80px;
-  background:linear-gradient(to right,#111,#333);
-  color:white;
-}
-
-.hero button{
-  margin-top:10px;
-  padding:10px 20px;
-  border:none;
-  background:#ffb800;
-  color:#111;
-  border-radius:5px;
-  cursor:pointer;
-}
-
-/* Section Title*/
-.title{
-  text-align:center;
-  margin-top:30px;
-}
-
-/* Products */
-.products{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:20px;
-  padding:30px;
-}
-
-.card{
-  width:240px;
-  background:white;
-  padding:10px;
-  border-radius:10px;
-  box-shadow:0 3px 15px rgba(0,0,0,0.2);
-  transition:0.3s;
-  text-align:center;
-}
-
-.card:hover{
-  transform:scale(1.05);
-}
-
-.card img{
-  width:100%;
-  border-radius:10px;
-}
-
-button{
-  background:#111;
-  color:white;
-  border:none;
-  padding:8px 15px;
-  border-radius:6px;
-  cursor:pointer;
-  margin-top:10px;
-}
-
-/* Cart */
-.cart-container{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.6);
-  display:none;
-  justify-content:center;
-  align-items:center;
-}
-
-.cart-box{
-  width:350px;
-  background:white;
-  padding:20px;
-  border-radius:10px;
-  position:relative;
-}
-
-.close{
-  position:absolute;
-  right:10px;
-  top:10px;
-  cursor:pointer;
-  color:red;
-}
 
